@@ -1,0 +1,15 @@
+GIECI — COMO ABRIR
+
+1. Instale Node.js 22.12 ou superior.
+2. Extraia este ZIP.
+3. Abra a pasta gieci no VS Code.
+4. Abra Terminal > Novo Terminal e execute:
+
+   npm ci
+   npm run demo
+
+5. Abra http://127.0.0.1:5173
+
+Para usar o banco real e os sensores, siga README.md.
+A API exige MySQL configurado e usuário cadastrado.
+As cores e as fontes originais foram preservadas.
