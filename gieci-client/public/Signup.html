@@ -1,264 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Criar conta | GIECI</title>
 
-  <link rel="stylesheet" href="/assets/Style/Signup.css" />
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cadastro — GIECI</title>
+
+    <link
+        rel="stylesheet"
+        href="/assets/Style/Signup.css"
+    >
 </head>
 
 <body>
-  <main class="signup-container">
-    <section class="signup-card">
-      <div class="signup-header">
-        <h1>GIECI</h1>
-        <p>Gestão Inteligente de Estoque para Cozinhas Industriais</p>
-      </div>
-
-      <h2>Criar conta</h2>
 
-      <form id="signup-form">
-        <div class="campo">
-          <label for="email">E-mail</label>
+    <main class="gieci-app g-login-screen">
 
-          <input
-            type="email"
-            id="email"
-            placeholder="seuemail@gmail.com"
-            autocomplete="email"
-            required
-          />
-        </div>
+        <section class="g-form g-login-card">
 
-        <div class="campo">
-          <label for="password">Senha</label>
+            <div class="g-brand">
 
-          <input
-            type="password"
-            id="password"
-            placeholder="Digite sua senha"
-            autocomplete="new-password"
-            minlength="8"
-            required
-          />
-        </div>
+                <div class="g-brand-text">
 
-        <div class="campo">
-          <label for="confirm-password">Confirmar senha</label>
+                    <h1 class="g-brand-title">
+                        GIECI
+                    </h1>
 
-          <input
-            type="password"
-            id="confirm-password"
-            placeholder="Confirme sua senha"
-            autocomplete="new-password"
-            minlength="8"
-            required
-          />
-        </div>
+                    <p>
+                        Gestão Inteligente de Estoque para Cozinhas Industriais
+                    </p>
 
-        <p id="signup-message"></p>
+                </div>
 
-        <button type="submit" id="signup-button">
-          Cadastrar
-        </button>
-      </form>
+            </div>
 
-      <div class="login-link">
-        <span>Já possui uma conta?</span>
-        <a href="/">Fazer login</a>
-      </div>
-    </section>
-  </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("Página de cadastro carregada.");
+            <form id="signup-form">
 
-      const form = document.getElementById("signup-form");
+                <h2 class="g-cadastrar-title">
+                    Criar conta
+                </h2>
 
-      const emailInput = document.getElementById("email");
 
-      const passwordInput = document.getElementById("password");
+                <div class="g-field">
 
-      const confirmPasswordInput =
-        document.getElementById("confirm-password");
+                    <label for="email">
+                        E-mail
+                    </label>
 
-      const message =
-        document.getElementById("signup-message");
+                    <input
+                        class="g-input"
+                        id="email"
+                        type="email"
+                        autocomplete="email"
+                        required
+                    >
 
-      const button =
-        document.getElementById("signup-button");
+                </div>
 
 
-      function mostrarMensagem(texto, tipo = "erro") {
-        message.textContent = texto;
+                <div class="g-field">
 
-        if (tipo === "sucesso") {
-          message.style.color = "#2e7d32";
-        } else {
-          message.style.color = "#d32f2f";
-        }
-      }
+                    <label for="password">
+                        Senha
+                    </label>
 
+                    <input
+                        class="g-input"
+                        id="password"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="72"
+                        required
+                    >
 
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
+                </div>
 
-        mostrarMensagem("");
 
-        const email =
-          emailInput.value.trim().toLowerCase();
+                <div class="g-field">
 
-        const password =
-          passwordInput.value;
+                    <label for="confirm-password">
+                        Confirmar senha
+                    </label>
 
-        const confirmPassword =
-          confirmPasswordInput.value;
+                    <input
+                        class="g-input"
+                        id="confirm-password"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="72"
+                        required
+                    >
 
+                </div>
 
-        if (!email) {
-          mostrarMensagem("Informe seu e-mail.");
-          return;
-        }
 
+                <p
+                    id="signup-message"
+                    role="status"
+                ></p>
 
-        if (!password) {
-          mostrarMensagem("Informe sua senha.");
-          return;
-        }
 
+                <button
+                    id="signup-button"
+                    class="g-btn g-btn-primary"
+                    type="submit"
+                >
+                    Cadastrar
+                </button>
 
-        if (password.length < 8) {
-          mostrarMensagem(
-            "A senha deve possuir pelo menos 8 caracteres."
-          );
 
-          return;
-        }
+                <div class="g-login-link">
 
+                    <span>
+                        Já possui uma conta?
+                    </span>
 
-        if (password !== confirmPassword) {
-          mostrarMensagem(
-            "As senhas não coincidem."
-          );
+                    <a href="/">
+                        Fazer login
+                    </a>
 
-          return;
-        }
+                </div>
 
+            </form>
 
-        try {
-          button.disabled = true;
+        </section>
 
-          button.textContent =
-            "Cadastrando...";
+    </main>
 
 
-          console.log(
-            "Enviando cadastro para /api/auth/register"
-          );
+    <script
+        src="/assets/Js/Signup.js"
+        defer
+    ></script>
 
-
-          const response = await fetch(
-            "/api/auth/register",
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type": "application/json"
-              },
-
-              credentials: "include",
-
-              body: JSON.stringify({
-                email,
-                password
-              })
-            }
-          );
-
-
-          const texto =
-            await response.text();
-
-
-          let data = {};
-
-
-          if (texto) {
-            try {
-              data = JSON.parse(texto);
-            } catch {
-              console.error(
-                "Resposta recebida:",
-                texto
-              );
-
-              throw new Error(
-                "O servidor retornou uma resposta inválida."
-              );
-            }
-          }
-
-
-          console.log(
-            "Status:",
-            response.status
-          );
-
-
-          console.log(
-            "Resposta:",
-            data
-          );
-
-
-          if (!response.ok) {
-            throw new Error(
-              data.error ||
-              data.message ||
-              "Não foi possível realizar o cadastro."
-            );
-          }
-
-
-          mostrarMensagem(
-            "Cadastro realizado com sucesso!",
-            "sucesso"
-          );
-
-
-          form.reset();
-
-
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 1500);
-
-
-        } catch (error) {
-
-          console.error(
-            "Erro no cadastro:",
-            error
-          );
-
-
-          mostrarMensagem(
-            error.message ||
-            "Erro ao conectar com o servidor."
-          );
-
-
-        } finally {
-
-          button.disabled = false;
-
-          button.textContent =
-            "Cadastrar";
-        }
-      });
-    });
-  </script>
 </body>
+
 </html>
