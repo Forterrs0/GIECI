@@ -1,0 +1,26 @@
+{
+  "name": "gieci-client",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "demo": "vite --mode demo --host 127.0.0.1",
+    "build": "vite build",
+    "build:demo": "vite build --mode demo --outDir dist-demo",
+    "preview": "vite preview --host 127.0.0.1",
+    "dev:lan": "vite --host 0.0.0.0",
+    "demo:lan": "vite --mode demo --host 0.0.0.0"
+  },
+  "dependencies": {
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "@fontsource/space-grotesk": "^5.2.0",
+    "@fontsource/ibm-plex-sans": "^5.2.0",
+    "@fontsource/ibm-plex-mono": "^5.2.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.0",
+    "@vitejs/plugin-react": "^6.0.0"
+  }
+}

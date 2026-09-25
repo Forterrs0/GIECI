@@ -1,0 +1,221 @@
+/* Complementos estruturais. A paleta e as famílias tipográficas são as originais. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 280px;
+  background: #edf0ec;
+}
+#root:empty::before {
+  content: "Carregando GIECI...";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: sans-serif;
+  color: #5b6b60;
+}
+button,
+input,
+select {
+  max-width: 100%;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.g-work-area {
+  display: contents;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.g-sans {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+.g-brand > div,
+.g-sync-status > div,
+.g-org-row-main,
+.g-stat-card,
+.g-card {
+  min-width: 0;
+}
+.g-brand-sub,
+.g-card-name,
+.g-org-row-name,
+.g-history-name,
+.g-history-sub,
+.g-armario-header,
+.g-prateleira-header-left {
+  overflow-wrap: anywhere;
+}
+.g-login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+}
+.g-login-card {
+  width: min(100%, 460px);
+}
+.g-login-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  margin: 24px 0 18px;
+}
+.g-login-card .g-field {
+  margin-bottom: 18px;
+}
+.g-login-error {
+  color: var(--crit);
+  font-size: 14px;
+}
+.g-session-controls,
+.g-query-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.g-query-tools {
+  margin-bottom: 12px;
+}
+.g-notice {
+  max-width: 1120px;
+  margin: 0 auto 16px;
+  padding: 14px;
+  border: 1px solid var(--crit);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.g-notice .g-btn {
+  margin-left: 10px;
+}
+.g-save-status {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+}
+.g-load-more {
+  margin-top: 16px;
+}
+.g-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+}
+.g-report-nav {
+  flex-wrap: wrap;
+}
+.g-filter-row .g-input {
+  min-width: 0;
+  max-width: 100%;
+}
+.g-editable {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+.g-svg-icon {
+  flex-shrink: 0;
+}
+:where(button, input, select):focus-visible {
+  outline: 2px solid var(--brand, #2e6f4b);
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .g-sync-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .g-sync-bar > .g-btn {
+    align-self: flex-start;
+  }
+  .g-report-controls {
+    align-items: stretch;
+  }
+  .g-history-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .g-history-main {
+    flex-basis: calc(100% - 42px);
+  }
+  .g-history-time {
+    margin-left: 40px;
+    white-space: normal;
+  }
+  .g-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .g-report-table {
+    min-width: 580px;
+  }
+  .g-input {
+    font-size: 16px;
+  } /* Evita zoom automático do teclado em celulares. */
+  .g-btn,
+  .g-tab,
+  .g-chip,
+  .g-icon-btn-danger {
+    min-height: 44px;
+  }
+  .g-btn-icon,
+  .g-icon-btn-danger {
+    min-width: 44px;
+  }
+}
+@media (max-width: 380px) {
+  .gieci-app {
+    padding: 12px;
+  }
+  .g-tabs {
+    gap: 4px;
+  }
+  .g-tab {
+    white-space: normal;
+    text-align: left;
+  }
+  .g-org-form:not(.column),
+  .g-manual-row {
+    flex-wrap: wrap;
+  }
+  .g-manual-row .g-input {
+    flex-basis: 100%;
+  }
+  .g-sync-bar > .g-btn {
+    width: 100%;
+    white-space: normal;
+  }
+  .g-report-nav {
+    gap: 6px;
+  }
+  .g-report-period-label {
+    min-width: 0;
+    flex: 1;
+  }
+  .g-readout {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gieci-app * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

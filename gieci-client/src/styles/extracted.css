@@ -1,0 +1,45 @@
+/* Estilos antes embutidos no React, preservados em classes. */
+.g-extracted-1 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #edf0ec;
+  color: #5b6b60;
+  font-family: sans-serif;
+}
+.g-extracted-2 {
+  color: #2e6f4b;
+}
+.g-extracted-3 {
+  font-size: 13.5px;
+}
+.g-extracted-4 {
+  width: auto;
+  font-family:
+    IBM Plex Sans,
+    sans-serif;
+}
+.g-extracted-5 {
+  font-family:
+    IBM Plex Sans,
+    sans-serif;
+}
+.g-extracted-6 {
+  padding: 16px 0;
+}
+.g-extracted-7 {
+  margin-top: 12px;
+}
+.g-extracted-8 {
+  margin-bottom: 0;
+}
+.g-extracted-9 {
+  margin-bottom: 22px;
+}
+.g-extracted-10 {
+  margin-top: 4px;
+  display: inline-block;
+}

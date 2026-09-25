@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cadastro — GIECI</title>
+
+    <link
+        rel="stylesheet"
+        href="/assets/Style/Signup.css"
+    >
+</head>
+
+<body>
+
+    <main class="gieci-app g-login-screen">
+
+        <section class="g-form g-login-card">
+
+            <div class="g-brand">
+
+                <div class="g-brand-text">
+
+                    <h1 class="g-brand-title">
+                        GIECI
+                    </h1>
+
+                    <p>
+                        Gestão Inteligente de Estoque para Cozinhas Industriais
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="signup-form">
+
+                <h2 class="g-cadastrar-title">
+                    Criar conta
+                </h2>
+
+
+                <div class="g-field">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        class="g-input"
+                        id="email"
+                        type="email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="g-field">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        class="g-input"
+                        id="password"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="72"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="g-field">
+
+                    <label for="confirm-password">
+                        Confirmar senha
+                    </label>
+
+                    <input
+                        class="g-input"
+                        id="confirm-password"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="72"
+                        required
+                    >
+
+                </div>
+
+
+                <p
+                    id="signup-message"
+                    role="status"
+                ></p>
+
+
+                <button
+                    id="signup-button"
+                    class="g-btn g-btn-primary"
+                    type="submit"
+                >
+                    Cadastrar
+                </button>
+
+
+                <div class="g-login-link">
+
+                    <span>
+                        Já possui uma conta?
+                    </span>
+
+                    <a href="/">
+                        Fazer login
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            console.log("Cadastro GIECI carregado.");
+
+            const form =
+                document.getElementById("signup-form");
+
+            const emailInput =
+                document.getElementById("email");
+
+            const passwordInput =
+                document.getElementById("password");
+
+            const confirmPasswordInput =
+                document.getElementById("confirm-password");
+
+            const button =
+                document.getElementById("signup-button");
+
+            const message =
+                document.getElementById("signup-message");
+
+
+            function mostrarMensagem(texto, tipo) {
+
+                message.textContent = texto;
+
+                if (tipo === "sucesso") {
+                    message.style.color = "#2e6f4b";
+                } else {
+                    message.style.color = "#b23b3b";
+                }
+            }
+
+
+            form.addEventListener(
+                "submit",
+                async function (event) {
+
+                    // IMPORTANTE:
+                    // impede o formulário de colocar
+                    // email e senha na URL.
+                    event.preventDefault();
+
+
+                    console.log(
+                        "Submit interceptado."
+                    );
+
+
+                    message.textContent = "";
+
+
+                    const email =
+                        emailInput.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    const password =
+                        passwordInput.value;
+
+
+                    const confirmPassword =
+                        confirmPasswordInput.value;
+
+
+                    if (!email) {
+
+                        mostrarMensagem(
+                            "Digite seu e-mail.",
+                            "erro"
+                        );
+
+                        return;
+                    }
+
+
+                    if (password.length < 8) {
+
+                        mostrarMensagem(
+                            "A senha precisa ter pelo menos 8 caracteres.",
+                            "erro"
+                        );
+
+                        return;
+                    }
+
+
+                    if (
+                        password !==
+                        confirmPassword
+                    ) {
+
+                        mostrarMensagem(
+                            "As senhas não coincidem.",
+                            "erro"
+                        );
+
+                        return;
+                    }
+
+
+                    button.disabled = true;
+
+                    button.textContent =
+                        "Cadastrando...";
+
+
+                    try {
+
+                        console.log(
+                            "Enviando para /api/auth/register"
+                        );
+
+
+                        const response =
+                            await fetch(
+                                "/api/auth/register",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    credentials:
+                                        "include",
+
+                                    body:
+                                        JSON.stringify({
+                                            email:
+                                                email,
+
+                                            password:
+                                                password
+                                        })
+                                }
+                            );
+
+
+                        console.log(
+                            "Status:",
+                            response.status
+                        );
+
+
+                        const texto =
+                            await response.text();
+
+
+                        console.log(
+                            "Resposta bruta:",
+                            texto
+                        );
+
+
+                        let data;
+
+
+                        try {
+
+                            data =
+                                JSON.parse(
+                                    texto
+                                );
+
+                        } catch {
+
+                            throw new Error(
+                                "O servidor não retornou JSON. Verifique a API."
+                            );
+                        }
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                data.error ||
+                                "Não foi possível realizar o cadastro."
+                            );
+                        }
+
+
+                        mostrarMensagem(
+                            "Cadastro realizado com sucesso!",
+                            "sucesso"
+                        );
+
+
+                        form.reset();
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "/";
+
+                            },
+                            1500
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Erro no cadastro:",
+                            error
+                        );
+
+
+                        mostrarMensagem(
+                            error.message ||
+                            "Erro ao conectar com o servidor.",
+                            "erro"
+                        );
+
+
+                    } finally {
+
+                        button.disabled =
+                            false;
+
+
+                        button.textContent =
+                            "Cadastrar";
+                    }
+                }
+            );
+        });
+    </script>
+
+</body>
+
+</html>
