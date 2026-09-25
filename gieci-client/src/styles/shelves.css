@@ -1,0 +1,477 @@
+/* =========================================================
+   GIECI
+   ORGANIZAÇÃO VISUAL DAS PRATELEIRAS
+   ========================================================= */
+
+
+/* Cada prateleira ocupa uma seção inteira */
+
+.g-prateleira-block {
+  width: 100%;
+  margin: 0 0 30px 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA PRATELEIRA
+   ========================================================= */
+
+.g-prateleira-header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  padding: 0 2px;
+
+  color: var(--ink);
+
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+
+.g-prateleira-header-left {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.g-prateleira-header-left svg {
+  flex-shrink: 0;
+}
+
+
+.g-prateleira-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 24px;
+
+  padding: 3px 9px;
+
+  border-radius: 999px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  color: var(--ink-soft);
+}
+
+
+/* =========================================================
+   GRID DOS PRODUTOS
+   ========================================================= */
+
+.g-shelf-product-grid {
+  width: 100%;
+
+  display: grid;
+
+  /*
+    Os cards permanecem com tamanho consistente.
+    Se houver espaço, ficam lado a lado.
+  */
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(280px, 320px)
+    );
+
+  gap: 16px;
+
+  align-items: start;
+
+  justify-content: start;
+}
+
+
+.g-shelf-product-item {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.g-shelf-product-item > .g-card {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+
+/*
+  Mantém os cards visualmente consistentes
+*/
+
+.g-shelf-product-item .g-card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 218px;
+}
+
+
+/* =========================================================
+   CABEÇALHO DO CARD
+   ========================================================= */
+
+.g-shelf-product-item .g-card-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   NOME DO PRODUTO
+   ========================================================= */
+
+.g-shelf-product-item .g-card-name {
+  width: 100%;
+
+  margin-top: 11px;
+  margin-bottom: 11px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DISPLAY DE PESO / QUANTIDADE
+   ========================================================= */
+
+.g-shelf-product-item .g-readout {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+}
+
+
+.g-shelf-product-item .g-readout > div {
+  min-width: 0;
+}
+
+
+.g-shelf-product-item .g-readout-weight {
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   INFORMAÇÃO DE ESTOQUE MÍNIMO
+   ========================================================= */
+
+.g-shelf-product-item .g-meta-row {
+  width: 100%;
+
+  margin-top: 8px;
+}
+
+
+.g-shelf-product-item .g-meta-row span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+.g-shelf-product-item .g-quick-row {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    34px
+    34px
+    minmax(0, 1fr);
+
+  gap: 8px;
+
+  align-items: center;
+
+  margin-top: auto;
+
+  padding-top: 10px;
+}
+
+
+.g-shelf-product-item .g-btn-icon {
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.g-shelf-product-item .g-btn-block {
+  width: 100%;
+
+  min-width: 0;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+}
+
+
+/* =========================================================
+   PAINEL "AJUSTAR PESO"
+   ========================================================= */
+
+.g-shelf-product-item .g-simulate-panel {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-top: 12px;
+}
+
+
+.g-shelf-product-item .g-manual-row {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap: 8px;
+}
+
+
+.g-shelf-product-item .g-manual-row .g-input {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   PRATELEIRA VAZIA
+   ========================================================= */
+
+.g-prateleira-empty {
+  width: 100%;
+
+  min-height: 90px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 18px;
+
+  border: 1px dashed var(--border);
+
+  border-radius: 12px;
+
+  color: var(--ink-soft);
+}
+
+
+/* =========================================================
+   ARMÁRIOS
+   ========================================================= */
+
+.g-armario-block {
+  width: 100%;
+}
+
+
+.g-armario-block + .g-armario-block {
+  margin-top: 32px;
+}
+
+
+.g-armario-header {
+  margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   TELAS GRANDES
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+  .g-shelf-product-grid {
+    grid-template-columns:
+      repeat(
+        auto-fill,
+        minmax(290px, 330px)
+      );
+
+    gap: 18px;
+  }
+}
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (
+  min-width: 700px
+)
+and (
+  max-width: 1000px
+) {
+
+  .g-shelf-product-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 699px) {
+
+  .g-prateleira-block {
+    margin-bottom: 24px;
+  }
+
+
+  .g-prateleira-header {
+    margin-bottom: 10px;
+  }
+
+
+  .g-shelf-product-grid {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+
+  .g-shelf-product-item {
+    width: 100%;
+  }
+
+
+  .g-shelf-product-item .g-card {
+    min-height: auto;
+  }
+
+
+  .g-shelf-product-item .g-quick-row {
+    grid-template-columns:
+      36px
+      36px
+      minmax(0, 1fr);
+  }
+
+
+  .g-shelf-product-item .g-btn-icon {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+  }
+
+
+  .g-shelf-product-item .g-btn-block {
+    height: 36px;
+  }
+
+
+  .g-prateleira-count {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .g-shelf-product-item .g-quick-row {
+    grid-template-columns:
+      32px
+      32px
+      minmax(0, 1fr);
+
+    gap: 6px;
+  }
+
+
+  .g-shelf-product-item .g-btn-icon {
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+  }
+
+
+  .g-shelf-product-item .g-btn-block {
+    height: 32px;
+
+    font-size: 11px;
+  }
+}
